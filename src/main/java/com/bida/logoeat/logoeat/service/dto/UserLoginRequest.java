@@ -1,11 +1,11 @@
 package com.bida.logoeat.logoeat.service.dto;
 
-public class UserLogin {
+public class UserLoginRequest {
 
     private String email;
     private String password;
 
-    public UserLogin() {
+    public UserLoginRequest() {
     }
 
     public String getEmail() {
