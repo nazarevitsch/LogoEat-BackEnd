@@ -31,6 +31,31 @@ public class UserService implements UserDetailsService {
     @Autowired
     private EmailNotification emailNotification;
 
+    public ResponseEntity<Message> updateName(String oldPassword, String newPassword, String username) {
+        if (oldPassword.equals(newPassword)) {
+            return new ResponseEntity<>((Message) context.getBean("oldPasswordAndNewPasswordAreSimilar"), HttpStatus.NOT_ACCEPTABLE);
+        }
+        if (validatePassword(oldPassword) && validatePassword(newPassword)) {
+            User user = findUserByEmail(username);
+            if (!user.getPassword().equals(oldPassword)){
+                return new ResponseEntity<>((Message) context.getBean("oldPasswordWrong"), HttpStatus.NOT_ACCEPTABLE);
+            }
+            userRepository.updatePasswordByEmailAndOldPassword(username, oldPassword, newPassword);
+            return new ResponseEntity<>((Message) context.getBean("passwordWasChanged"), HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>((Message) context.getBean("invalidPassword"), HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    public ResponseEntity<Message> updateName(String newName, String username) {
+        if (validateName(newName)) {
+            userRepository.updateNameByEmail(username, newName);
+            return new ResponseEntity<>((Message) context.getBean("nameWasChanged"), HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>((Message) context.getBean("invalidName"), HttpStatus.NOT_ACCEPTABLE);
+    }
+
     public ResponseEntity<Message> updatePhoneNumber(String newPhoneNumber, String username) {
         if (validatePhoneNumber(newPhoneNumber)) {
             userRepository.updatePhoneNumberByEmail(username, newPhoneNumber);
@@ -96,6 +121,12 @@ public class UserService implements UserDetailsService {
         Pattern phoneNumberPattern = Pattern.compile("^\\+380[\\d]{9}$");
         Matcher phoneNumberMatcher = phoneNumberPattern.matcher(phoneNumber);
         return phoneNumberMatcher.matches();
+    }
+
+    public boolean validateName(String name) {
+        Pattern namePattern = Pattern.compile("^[\\w\\w\\p{IsCyrillic}[\\s]*]{5,20}$");
+        Matcher nameMatcher = namePattern.matcher(name);
+        return nameMatcher.matches();
     }
 
     private String generateNewPassword() {

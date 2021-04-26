@@ -4,10 +4,7 @@ import com.bida.logoeat.logoeat.config.JWTUtil;
 import com.bida.logoeat.logoeat.domain.JWTResponse;
 import com.bida.logoeat.logoeat.domain.Message;
 import com.bida.logoeat.logoeat.service.UserService;
-import com.bida.logoeat.logoeat.service.dto.ForgotPasswordRequest;
-import com.bida.logoeat.logoeat.service.dto.PhoneNumberRequest;
-import com.bida.logoeat.logoeat.service.dto.UserLoginRequest;
-import com.bida.logoeat.logoeat.service.dto.UserRegistrationDTO;
+import com.bida.logoeat.logoeat.service.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -55,7 +52,17 @@ public class UserController {
     }
 
     @PutMapping("/update_phone_number")
-    public ResponseEntity<Message> loginUser(@RequestBody PhoneNumberRequest phoneNumberRequest, Principal principal) throws Exception{
+    public ResponseEntity<Message> updatePhoneNumber(@RequestBody PhoneNumberRequest phoneNumberRequest, Principal principal) {
         return userService.updatePhoneNumber(phoneNumberRequest.getPhoneNumber(), principal.getName());
+    }
+
+    @PutMapping("/update_name")
+    public ResponseEntity<Message> updateName(@RequestBody NameRequest nameRequest, Principal principal) {
+        return userService.updateName(nameRequest.getName(), principal.getName());
+    }
+
+    @PutMapping("/update_password")
+    public ResponseEntity<Message> updatePassword(@RequestBody ChangePasswordRequest changePasswordRequest, Principal principal) {
+        return userService.updateName(changePasswordRequest.getOldPassword(), changePasswordRequest.getNewPassword(), principal.getName());
     }
 }

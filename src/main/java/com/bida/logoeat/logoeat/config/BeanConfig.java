@@ -29,12 +29,12 @@ public class BeanConfig {
 
     @Bean(name = "SMSNotificationIsNotAvailable")
     public Message SMSNotificationIsNotAvailable() {
-        return new Message("SMS is NOT notification is not available!");
+        return new Message("SMS notification is NOT available!");
     }
 
     @Bean(name = "emailNotificationIsNotAvailable")
     public Message emailNotificationIsNotAvailable() {
-        return new Message("Email is NOT notification is not available!");
+        return new Message("Email notification is NOT available!");
     }
 
     @Bean(name = "SMSWithNewPassword")
@@ -55,5 +55,35 @@ public class BeanConfig {
     @Bean(name = "invalidPhoneNumber")
     public Message invalidPhoneNumber() {
         return new Message("Invalid phone number.");
+    }
+
+    @Bean(name = "nameWasChanged")
+    public Message nameWasChanged() {
+        return new Message("Name was changed.");
+    }
+
+    @Bean(name = "invalidName")
+    public Message invalidName() {
+        return new Message("Invalid name.");
+    }
+
+    @Bean(name = "invalidPassword")
+    public Message invalidPassword() {
+        return new Message("Invalid password.");
+    }
+
+    @Bean(name = "oldPasswordAndNewPasswordAreSimilar")
+    public Message oldPasswordAndNewPasswordAreSimilar() {
+        return new Message("Old password and new password are similar.");
+    }
+
+    @Bean(name = "oldPasswordWrong")
+    public Message oldPasswordWrong() {
+        return new Message("Old password is wrong.");
+    }
+
+    @Bean(name = "passwordWasChanged")
+    public Message passwordWasChanged() {
+        return new Message("Password was changed.");
     }
 }

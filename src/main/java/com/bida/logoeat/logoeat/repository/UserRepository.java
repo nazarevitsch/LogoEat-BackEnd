@@ -29,4 +29,20 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "where email = :email",
             nativeQuery = true)
     void updatePhoneNumberByEmail(String email, String newPhoneNumber);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update users\n" +
+            "set name = :newName\n" +
+            "where email = :email",
+            nativeQuery = true)
+    void updateNameByEmail(String email, String newName);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update users\n" +
+            "set password = :newPassword\n" +
+            "where email = :email and password = :oldPassword",
+            nativeQuery = true)
+    void updatePasswordByEmailAndOldPassword(String email, String oldPassword, String newPassword);
 }
