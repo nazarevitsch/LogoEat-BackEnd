@@ -124,7 +124,7 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean validateName(String name) {
-        Pattern namePattern = Pattern.compile("^[\\w\\w\\p{IsCyrillic}[\\s]*]{5,20}$");
+        Pattern namePattern = Pattern.compile("^[[\\w\\w\\p{IsCyrillic}[\\s]*]&&[\\D]]{5,20}$");
         Matcher nameMatcher = namePattern.matcher(name);
         return nameMatcher.matches();
     }
