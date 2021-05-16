@@ -64,6 +64,6 @@ public class UserController {
 
     @PutMapping("/update_password")
     public ResponseEntity<Message> updatePassword(@RequestBody ChangePasswordRequest changePasswordRequest, Principal principal) {
-        return userService.updateName(changePasswordRequest.getOldPassword(), changePasswordRequest.getNewPassword(), principal.getName());
+        return userService.updatePassword(changePasswordRequest.getOldPassword(), changePasswordRequest.getNewPassword(), principal.getName());
     }
 }

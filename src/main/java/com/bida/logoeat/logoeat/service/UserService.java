@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private EmailNotification emailNotification;
 
-    public ResponseEntity<Message> updateName(String oldPassword, String newPassword, String username) {
+    public ResponseEntity<Message> updatePassword(String oldPassword, String newPassword, String username) {
         if (oldPassword.equals(newPassword)) {
             return new ResponseEntity<>((Message) context.getBean("oldPasswordAndNewPasswordAreSimilar"), HttpStatus.NOT_ACCEPTABLE);
         }
@@ -102,7 +102,7 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean validateUserData(User user){
-        return validatePassword(user.getPassword()) && validateEmail(user.getEmail());
+        return validatePassword(user.getPassword()) && validateEmail(user.getEmail()) && validatePhoneNumber(user.getPhoneNumber());
     }
 
     public boolean validatePassword(String password) {

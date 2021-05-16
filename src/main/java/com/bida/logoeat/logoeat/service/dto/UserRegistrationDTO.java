@@ -7,6 +7,7 @@ public class UserRegistrationDTO {
     private String name;
     private String email;
     private String password;
+    private String phoneNumber;
 
     public UserRegistrationDTO(){}
 
@@ -40,6 +41,14 @@ public class UserRegistrationDTO {
         this.password = password;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public User getUser(){
         User user = new User();
         user.setName(this.getName());
@@ -54,6 +63,7 @@ public class UserRegistrationDTO {
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
