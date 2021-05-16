@@ -54,6 +54,7 @@ public class UserRegistrationDTO {
         user.setName(this.getName());
         user.setEmail(this.getEmail());
         user.setPassword(this.getPassword());
+        user.setPhoneNumber(this.phoneNumber);
         return user;
     }
 
