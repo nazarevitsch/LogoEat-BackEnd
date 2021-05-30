@@ -9,15 +9,17 @@ create table users(
 
 drop table if exists restaurants cascade;
 create table restaurants(
-                      id serial primary key,
-                      name varchar(255),
-                      description text,
-                      latitude numeric(9, 7),
-                      longitude numeric(9, 7),
-                      main_image_link_id int,
-                      rating numeric(1, 1),
-                      avg_bill int
+                            id serial primary key,
+                            name varchar(255),
+                            description text,
+                            latitude numeric(9, 7),
+                            longitude numeric(9, 7),
+                            address varchar(240),
+                            main_image_link varchar(140),
+                            rating numeric(5, 4),
+                            avg_bill int
 );
+
 
 drop table if exists kitchen_types cascade;
 create table kitchen_types(

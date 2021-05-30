@@ -27,8 +27,11 @@ public class Restaurant {
     @Column(name = "longitude")
     private double longitude;
 
-    @Column(name = "main_image_link_id")
-    private int mainImageLinkId;
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "main_image_link")
+    private String mainImageLink;
 
     @Column(name = "avg_bill")
     private int avgBill;
@@ -79,12 +82,12 @@ public class Restaurant {
         this.longitude = longitude;
     }
 
-    public int getMainImageLinkId() {
-        return mainImageLinkId;
+    public String getMainImageLink() {
+        return mainImageLink;
     }
 
-    public void setMainImageLinkId(int mainImageLinkId) {
-        this.mainImageLinkId = mainImageLinkId;
+    public void setMainImageLink(String mainImageLink) {
+        this.mainImageLink = mainImageLink;
     }
 
     public int getAvgBill() {
@@ -103,6 +106,14 @@ public class Restaurant {
         this.rating = rating;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -111,7 +122,7 @@ public class Restaurant {
                 ", description='" + description + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", mainImageLinkId=" + mainImageLinkId +
+                ", mainImageLink=" + mainImageLink +
                 ", avgBill=" + avgBill +
                 ", rating=" + rating +
                 '}';

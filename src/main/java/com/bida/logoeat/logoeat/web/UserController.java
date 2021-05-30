@@ -6,6 +6,7 @@ import com.bida.logoeat.logoeat.domain.Message;
 import com.bida.logoeat.logoeat.service.UserService;
 import com.bida.logoeat.logoeat.service.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,7 +32,6 @@ public class UserController {
     @PostMapping("/registration")
     @ResponseBody
     public ResponseEntity<Message> registerNewUser(@RequestBody UserRegistrationDTO userDTO){
-        System.out.println(userDTO);
         return userService.registerUser(userDTO);
     }
 
@@ -66,5 +66,10 @@ public class UserController {
     @PutMapping("/update_password")
     public ResponseEntity<Message> updatePassword(@RequestBody ChangePasswordRequest changePasswordRequest, Principal principal) {
         return userService.updatePassword(changePasswordRequest.getOldPassword(), changePasswordRequest.getNewPassword(), principal.getName());
+    }
+
+    @GetMapping("/token_expired")
+    public ResponseEntity<Message> isTokenExpired() {
+        return new ResponseEntity<>(new Message("Token isn't expired!"), HttpStatus.OK);
     }
 }

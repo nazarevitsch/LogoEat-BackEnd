@@ -88,12 +88,12 @@ public class UserService implements UserDetailsService {
     public ResponseEntity<Message> registerUser(UserRegistrationDTO userDTO){
         User user = userDTO.getUser();
         if (findUserByEmail(user.getEmail()) != null) {
-            return new ResponseEntity<>((Message) context.getBean("occupiedEmail"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>((Message) context.getBean("occupiedEmail"), HttpStatus.NOT_ACCEPTABLE);
         } else {
             if (validateUserData(user)) {
                 userRepository.save(user);
                 return new ResponseEntity<>((Message) context.getBean("userIsSuccessfulRegistered"), HttpStatus.OK);
-            } else return new ResponseEntity<>((Message) context.getBean("unacceptableEmailOrPassword"), HttpStatus.NOT_FOUND);
+            } else return new ResponseEntity<>((Message) context.getBean("unacceptableEmailOrPassword"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
