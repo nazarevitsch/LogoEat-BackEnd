@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Restaurant")
 @Table(name = "restaurants")
 public class Restaurant {
 
@@ -36,9 +36,8 @@ public class Restaurant {
     @Column(name = "avg_bill")
     private int avgBill;
 
-    @Column(name = "rating")
-    private double rating;
-
+    @Column(name = "ratting")
+    private double ratting;
 
     public Restaurant() {}
 
@@ -98,12 +97,12 @@ public class Restaurant {
         this.avgBill = avgBill;
     }
 
-    public double getRating() {
-        return rating;
+    public double getRatting() {
+        return ratting;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRating(double ratting) {
+        this.ratting = ratting;
     }
 
     public String getAddress() {
@@ -124,7 +123,7 @@ public class Restaurant {
                 ", longitude=" + longitude +
                 ", mainImageLink=" + mainImageLink +
                 ", avgBill=" + avgBill +
-                ", rating=" + rating +
+                ", rating=" + ratting +
                 '}';
     }
 }

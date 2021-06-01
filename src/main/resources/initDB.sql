@@ -16,7 +16,7 @@ create table restaurants(
                             longitude numeric(9, 7),
                             address varchar(240),
                             main_image_link varchar(140),
-                            rating numeric(5, 4),
+                            ratting numeric(5, 4),
                             avg_bill int
 );
 
@@ -40,3 +40,14 @@ create table restaurants_images_link(
                                           restaurant_id int,
                                           image_link varchar(255)
 );
+
+drop table if exists bookings cascade;
+create table bookings(
+                         id serial primary key,
+                         user_id int,
+                         restaurant_id int,
+                         booking_date timestamp,
+                         user_name varchar(30),
+                         people_amount int
+);
+
